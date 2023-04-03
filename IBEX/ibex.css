@@ -1,0 +1,383 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+}
+*:focus{
+    outline: none;
+}
+body{
+    background: var(--rich);
+    min-width: 420px;
+}
+a{
+    text-decoration: none;
+}
+:root{
+    --plat: #E4E3E2;
+    --jet: #696563;
+    --rich:#0A0A0A;
+    --khaki: #B7A98E;
+    --grullo: #95815F;
+        --Oplat: #e4e3e2b9;
+        --Ojet: #3d3b39a7;
+        --Orich: #0a0a0ace;
+        --Okhaki: #b7a98e9b;
+        --Ogrullo: #95815fa4;
+    --defTransition: all 0.3s linear;
+    --spacing: 0.25rem
+}
+header{
+    background: var(--rich);
+    height: 3.5rem;
+    position: relative;
+}
+hr{
+    height: 1px;
+    background: var(--jet);
+    width: 95%;
+    margin: 2.5rem auto;
+}
+.logo{
+    height: 100%;
+}
+.brand{
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--plat);
+    text-align: center;
+    color: var(--khaki);
+}
+.socials{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+.fa-brands{
+    font-size: 1.5rem;
+    color: var(--khaki);
+}
+.navbar{
+    width: 100%;
+    display: block;
+    z-index: 99;
+    background-color: var(--khaki);
+    height: 2rem;
+    position: absolute;
+    transition: height 0.3s linear;
+}
+.navbar.fixedbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 1.3rem;
+}
+.links{
+    z-index: 20;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    transition: visibility 0.3s linear, left 0.1s linear ;
+}
+.hidden{
+    display: none;
+}
+.link{
+    z-index: 50;
+    color: var(--rich);
+    cursor: pointer;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-family: 'Roboto Condensed', sans-serif;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: 100%;
+    display: inline-block;
+    background-color: transparent;
+    transition: color 0.5s linear,background 0.5s linear
+}
+.link:hover{
+    background-color: var(--rich);
+    color: var(--plat);
+    transition: color 0.6s linear;
+    }
+.search{
+    height: 100%;
+    z-index: 11;
+    background: transparent;
+    position: absolute;
+    right: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: right 0.3s linear, background 0.3s linear;
+}
+.fa-magnifying-glass{
+    position: relative;
+    padding: 0.35rem 0;
+    background: transparent;
+    width: 40px;
+    height: 100%;
+    font-size: 1.4rem;
+    color: var(--rich);
+    transition: var(--defTransition);
+}
+.navbar.fixedbar .fa-magnifying-glass {
+    font-size: 1rem;
+    padding: 0.2rem 0;
+}
+.fa-magnifying-glass:hover{
+    color: var(--plat);
+    transition: color 0.3s linear;
+}
+.search.searching{
+    right: 0;
+    /* background: var(--jet); */
+}
+.search-container{
+    z-index: 10;
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+.search-bar{
+    display: block;
+    z-index: 20;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--jet);
+    left: 100%;
+    transition: left 0.3s linear;
+}
+.search-bar.searching{
+    display: block;
+    left: 0;
+}
+.search-input{
+    caret-color: var(--rich);
+    text-transform: uppercase;
+    color: var(--plat);
+    border-bottom: 3px solid var(--Orich);
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    background: transparent;
+    position: relative;
+    height: 100%;
+    width: 80%;
+    font-size: 1.4rem;
+    left: 100%;
+    transform: translate(-100%,0);
+}
+.search-input::placeholder{
+    font-family: 'Roboto', sans-serif;
+    color: var(--Orich);
+    transition: opacity 0.2s linear;
+}
+.search-input:focus::placeholder{
+    opacity: 0.5;
+    transition: opacity 0.2s linear;
+}
+.expand{
+    visibility: hidden;
+    display: block;
+    z-index: 99;
+    position: absolute;
+    height: 450px;
+    width: 80vw;
+    background: var(--jet);
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+.link:hover + .expand{
+    visibility: visible;
+}
+.expand:hover{
+    visibility: visible;
+}
+.banner-container{
+    position: relative;
+    /* display: grid;
+    place-items: center;
+    text-align: center; */
+    height: 400px;
+    width: 100%;
+}
+.banner{
+    position: absolute;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    text-align: center;
+    z-index: 0;
+    height: 400px;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.banner h1{
+    color: var(--plat);
+    text-transform: uppercase;
+    letter-spacing: var(--spacing)
+}
+.banner p{
+    margin: 1rem 5%;
+    color: var(--plat);
+}
+.banner a{
+    text-transform: uppercase;
+    letter-spacing: var(--spacing);
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    border: 2px solid var(--khaki);
+    color: var(--plat);
+    transition: var(--defTransition);
+}
+.banner a:hover{
+    background: var(--khaki);
+    color: var(--rich);
+    border: 2px solid var(--khaki)
+}
+.banner.active-banner{
+    z-index: 10;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+.fa-chevron-right, .fa-chevron-left{
+    position: absolute;
+    font-size: 1.5rem;
+    color: var(--khaki);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: var(--defTransition);
+}
+.next{
+    right: 0;
+    cursor: pointer;
+    position: absolute;
+    z-index: 50;
+    height: 100%;
+    min-width: 25px;
+    width: 4.5%;
+    transition: var(--defTransition);
+}
+.prev {
+    left: 0;
+    cursor: pointer;
+    position: absolute;
+    z-index: 50;
+    height: 100%;
+    min-width: 25px;
+    width: 4.5%;
+    transition: var(--defTransition);
+}
+.next:hover .fa-chevron-right, .prev:hover .fa-chevron-left{
+    color: var(--plat);
+}
+.whitebox{
+    visibility: hidden;
+    background: var(--plat);
+    z-index: 20;
+    transition: opacity 0.4s ease, visibility 0.4s linear 0.1s;
+}
+.whitebox.changing{
+    visibility: visible;
+    opacity: 0.10;
+}
+.banner#tag1{
+        background:linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.45)), url(./images/resbike.jpg) center/cover no-repeat;
+}
+.banner#tag2{
+        background:linear-gradient(rgba(0,0,0,0.25), rgba(0, 0, 0, 0.45)), url(./images/rescomps.jpg) center/cover no-repeat;
+}
+.banner#tag3{
+        background:linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.45)), url(./images/resequ.jpg) center/cover no-repeat;
+}
+.buttons{
+    position: absolute;
+    z-index: 90;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%,0);
+    cursor: pointer;
+}
+.button{
+    background: transparent;
+    cursor: pointer;
+}
+.fa-circle{
+    color: var(--khaki);
+    transition: var(--defTransition);
+}
+.button.active-banner{
+    color: var(--plat);
+}
+.newsletter{
+    display: grid;
+    place-items: center;
+    align-content: center;
+    text-align: center;
+}
+.newsletter h1{
+    color: var(--plat);
+    margin: 1.5rem auto;
+    text-transform: uppercase;
+    font-weight:999;
+}
+.newsletter p{
+    color: var(--Oplat);
+}
+.email{
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--plat);
+    display: block;
+    background: var(--jet);
+    height: 2rem;
+    margin: 1rem 0 0.25rem auto;
+    width: 99%;
+}
+.email::placeholder{
+    text-transform: capitalize;
+    color: var(--Oplat);
+    text-align: center;
+}
+.submit-btn{
+    color: var(--rich);
+    background: var(--plat);
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: var(--spacing);
+    margin: 0 0;
+    height: 1.5rem;
+    width: 25%;
+    transition: all 0.15s linear;
+}
+.submit-btn:hover{
+    background-color: var(--khaki);
+}
+
+@media screen and (max-width: 550px) {
+    .links{
+        left: 45%;
+    }
+    .link {
+    padding-left: 2vw;
+    padding-right: 2vw;
+    }
+}
